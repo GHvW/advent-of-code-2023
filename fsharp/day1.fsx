@@ -24,3 +24,16 @@ File.ReadAllLines("./input/day1.txt")
 |> Seq.map calibrate
 |> Seq.sum
 |> printfn "%A"
+
+
+// ------
+
+let rec findNums 
+    (output: list<int>) 
+    (input: Span<char>) 
+    ((istart, iend): int * int) 
+ : list<int> =
+    if istart = iend && Char.IsDigit(input[istart]) then
+        int (Char.GetNumericValue(input[istart]))
+    else
+        findNums input
